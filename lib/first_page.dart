@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoping/cart_page.dart';
 
 class FirstPage extends StatefulWidget {
   @override
@@ -14,6 +15,15 @@ class _FirstPageState extends State<FirstPage> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 221, 241, 250),
       bottomNavigationBar: BottomNavigationBar(
+          onTap: (value) {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) {
+                  return CartPage();
+                },
+              ),
+            );
+          },
           elevation: 10,
           backgroundColor: Colors.white,
           iconSize: 24,
@@ -36,7 +46,7 @@ class _FirstPageState extends State<FirstPage> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.shopping_bag),
-              label: '',  
+              label: '',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),
