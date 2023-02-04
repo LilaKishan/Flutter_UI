@@ -11,6 +11,45 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+          onTap: (value) {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) {
+                  return CartPage();
+                },
+              ),
+            );
+          },
+          elevation: 10,
+          backgroundColor: Colors.white,
+          iconSize: 24,
+          unselectedItemColor: Theme.of(context).focusColor.withOpacity(1),
+          selectedIconTheme: IconThemeData(size: 30),
+          selectedItemColor: Colors.greenAccent,
+          type: BottomNavigationBarType.fixed,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.message),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.heart_broken),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_bag),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: '',
+            ),
+          ]),
       backgroundColor: Color.fromARGB(255, 221, 241, 250),
       body: SafeArea(
         child: Column(
@@ -77,21 +116,89 @@ class _CartPageState extends State<CartPage> {
             //My bag Text
             Container(
               child: Container(
-                color: Colors.amber,
-                height: 300,
+                //color: Colors.amber,
+                height: 430,
+                padding: EdgeInsets.all(5),
                 child: SingleChildScrollView(
-                  child: Column(children: [
-                    getCard(),
-                    getCard(),
-                    getCard(),
-                  ]),
+                  child: Column(
+                    children: [
+                      getCard(),
+                      getCard(),
+                      getCard(),
+                      getCard(),
+                      getCard(),
+                      getCard(),
+                    ],
+                  ),
                 ),
               ),
             ),
-
+            //cart item
             Container(
-              height: 150,
-              color: Colors.red,
+              //height: 70,
+              margin: EdgeInsets.all(5),
+              // color: Colors.red,
+              child: Column(
+                children: [
+                  Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Container(
+                        margin: EdgeInsets.all(10),
+                        child: Row(children: [
+                          Expanded(
+                            child: Container(
+                              //color: Colors.amber,
+                              // height: 20,
+                              child: Text(
+                                '3  Items',
+                                textAlign: TextAlign.left,
+                                style:
+                                    TextStyle(color: Colors.grey, fontSize: 20),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              // color: Colors.blue,
+                              //height: 20,
+                              child: Container(
+                                margin: EdgeInsets.all(3),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      '\$',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        color:
+                                            Color.fromARGB(255, 13, 216, 223),
+                                      ),
+                                    ),
+                                    Text(
+                                      '180',
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ]),
+                      )),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                    child: ElevatedButton(
+                      style:
+                          ButtonStyle(elevation: MaterialStateProperty.all(10)),
+                      onPressed: () {},
+                      child: Text('Checkout', style: TextStyle(fontSize: 20)),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -101,16 +208,19 @@ class _CartPageState extends State<CartPage> {
 
   Widget getCard() {
     return Card(
+      elevation: 10,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Container(
-        height: 120,
-        color: Colors.pinkAccent,
+        height: 109,
+        padding: EdgeInsets.all(3),
+        //color: Colors.pinkAccent,
         margin: EdgeInsets.all(10),
         child: Column(
           children: [
             Container(
               margin: EdgeInsets.only(left: 15),
               width: double.infinity,
-              color: Colors.green,
+              //color: Colors.green,
               child: Text(
                 '''Nike Jorden:'Why not?' Zer0.3 PF''',
                 textAlign: TextAlign.left,
@@ -132,44 +242,46 @@ class _CartPageState extends State<CartPage> {
                         //color: Colors.red,
                         child: Column(children: [
                           Container(
-                            margin: EdgeInsets.only(left: 2),
-                            padding: EdgeInsets.all(5),
+                            margin: EdgeInsets.only(left: 5),
+                            padding: EdgeInsets.all(3),
                             // height: 20,
-                            child: Row(
-                              children: [
-                                Text(
-                                  '\$',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Color.fromARGB(255, 13, 216, 223),
-                                  ),
-                                ),
-                                Text(
-                                  '180',
-                                  style: TextStyle(
+                            child: Container(
+                              child: Row(
+                                children: [
+                                  Text(
+                                    '\$',
+                                    style: TextStyle(
                                       fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
+                                      color: Color.fromARGB(255, 13, 216, 223),
+                                    ),
+                                  ),
+                                  Text(
+                                    '180',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.fromLTRB(0, 10, 10, 2),
+                            margin: EdgeInsets.fromLTRB(0, 2, 10, 2),
                             child: Row(children: [
                               Expanded(
                                 flex: 2,
                                 child: Container(
-                                  color: Colors.green,
+                                  //color: Colors.green,
                                   child: Row(children: [
                                     Expanded(
                                       child: Container(
                                         // color: Colors.red,
-                                        child: Icon(Icons.remove, size: 30),
+                                        child: Icon(Icons.remove),
                                       ),
                                     ),
                                     Expanded(
                                       child: Container(
-                                        color: Colors.blue,
+                                        // color: Colors.blue,
                                         child: Text(
                                           textAlign: TextAlign.center,
                                           '1',
@@ -181,7 +293,9 @@ class _CartPageState extends State<CartPage> {
                                     ),
                                     Expanded(
                                       child: Container(
-                                        child: Icon(Icons.add, size: 30),
+                                        child: Icon(
+                                          Icons.add,
+                                        ),
                                       ),
                                     ),
                                   ]),
@@ -191,10 +305,12 @@ class _CartPageState extends State<CartPage> {
                               Expanded(
                                 child: Container(
                                   padding: EdgeInsets.all(5),
-                                  color: Colors.red,
+                                  //color: Colors.red,
                                   child: Text('43',
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 20)),
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold)),
                                 ),
                               ),
                               //dropdown
@@ -206,12 +322,11 @@ class _CartPageState extends State<CartPage> {
                     Expanded(
                       child: Container(
                         //width: 20,
-                        padding: EdgeInsets.only(bottom: 8),
-                        //margin: EdgeInsets.only(left: 70),
+
+                        margin: EdgeInsets.only(right: 10),
                         child: Image.asset(
-                          width: 10,
                           fit: BoxFit.fill,
-                          height: 80,
+                          height: 60,
                           alignment: AlignmentDirectional.topStart,
                           'assets/images/gs2.jpg',
                         ),
