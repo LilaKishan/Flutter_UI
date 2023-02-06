@@ -17,19 +17,18 @@ class _CartPageState extends State<CartPage> {
         child: Column(
           children: [
             Container(
-              //margin: EdgeInsets.all(10),
+              margin: EdgeInsets.all(10),
               child: Row(
                 children: [
                   Expanded(
-                    flex: -2,
-                    child: Container(
-                      margin: EdgeInsets.all(20),
-                      child: Icon(Icons.menu, textDirection: TextDirection.ltr),
-                    ),
-                  ),
+                      child: Container(
+                          margin: EdgeInsets.only(left: 13),
+                          alignment: AlignmentDirectional.topStart,
+                          child: Icon(Icons.menu))),
                   Expanded(
                     child: Container(
-                      margin: EdgeInsets.only(left: 250),
+                      margin: EdgeInsets.only(right: 13),
+                      alignment: AlignmentDirectional.topEnd,
                       child: CircleAvatar(
                         child: Icon(
                           Icons.person,
@@ -76,21 +75,23 @@ class _CartPageState extends State<CartPage> {
               ),
             ),
             //My bag Text
-            Container(
+            Expanded(
               child: Container(
-                //color: Colors.amber,
-                height: 430,
-                padding: EdgeInsets.all(5),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      getCard(),
-                      getCard(),
-                      getCard(),
-                      getCard(),
-                      getCard(),
-                      getCard(),
-                    ],
+                child: Container(
+                  //color: Colors.amber,
+                  //height: 430,
+                  padding: EdgeInsets.all(5),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        getCard(),
+                        getCard(),
+                        getCard(),
+                        getCard(),
+                        getCard(),
+                        getCard(),
+                      ],
+                    ),
                   ),
                 ),
               ),

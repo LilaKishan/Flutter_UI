@@ -19,18 +19,18 @@ class _FirstPageState extends State<FirstPage> {
         child: Column(
           children: [
             Container(
+              margin: EdgeInsets.all(10),
               child: Row(
                 children: [
                   Expanded(
-                    flex: -2,
-                    child: Container(
-                      margin: EdgeInsets.all(20),
-                      child: Icon(Icons.menu, textDirection: TextDirection.ltr),
-                    ),
-                  ),
+                      child: Container(
+                          margin: EdgeInsets.only(left: 13),
+                          alignment: AlignmentDirectional.topStart,
+                          child: Icon(Icons.menu))),
                   Expanded(
                     child: Container(
-                      margin: EdgeInsets.only(left: 250),
+                      margin: EdgeInsets.only(right: 13),
+                      alignment: AlignmentDirectional.topEnd,
                       child: CircleAvatar(
                         child: Icon(
                           Icons.person,
@@ -44,7 +44,7 @@ class _FirstPageState extends State<FirstPage> {
                 ],
               ),
             ),
-            //menu
+            //menu 
             Container(
               height: 50,
               margin: EdgeInsets.all(25),
@@ -122,133 +122,135 @@ class _FirstPageState extends State<FirstPage> {
               ),
             ),
             //listcategories
-            Container(
-              //color: Colors.red,
-              height: 450,
-              child: ListView(
-                scrollDirection: Axis.vertical,
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        //height: 200,
-                        //color: Colors.blue,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Container(
+            Expanded(
+              child: Container(
+                //color: Colors.red,
+                //height: 380,
+                child: ListView(
+                  scrollDirection: Axis.vertical,
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.all(10),
+                          //height: 200,
+                          //color: Colors.blue,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 10),
+                                  child: Container(
+                                    padding: EdgeInsets.all(5),
+                                    child: getCard(180, 'assets/images/gs2.jpg',
+                                        '''Nike Jorden:'Why not?' Zer0.3 PF'''),
+                                  ),
+                                  // color: Colors.white,
+                                ),
+                              ),
+                              Expanded(
+                                  child: Container(
                                 margin: EdgeInsets.only(right: 10),
                                 child: Container(
-                                  padding: EdgeInsets.all(5),
-                                  child: getCard(180, 'assets/images/gs2.jpg',
-                                      '''Nike Jorden:'Why not?' Zer0.3 PF'''),
-                                ),
+                                    padding: EdgeInsets.all(5),
+                                    child: getCard(175, 'assets/images/gs2.jpg',
+                                        '''Nike Jorden:'Why not?' Zer0.3 PF''')),
                                 // color: Colors.white,
-                              ),
-                            ),
-                            Expanded(
-                                child: Container(
-                              margin: EdgeInsets.only(right: 10),
-                              child: Container(
-                                  padding: EdgeInsets.all(5),
-                                  child: getCard(175, 'assets/images/gs2.jpg',
-                                      '''Nike Jorden:'Why not?' Zer0.3 PF''')),
-                              // color: Colors.white,
-                            )),
-                          ],
+                              )),
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        height: 200,
-                        //color: Colors.blue,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Container(
+                        Container(
+                          margin: EdgeInsets.all(10),
+                          //height: 200,
+                          //color: Colors.blue,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 10),
+                                  child: Container(
+                                    padding: EdgeInsets.all(5),
+                                    child: getCard(190, 'assets/images/gs2.jpg',
+                                        '''Nike Jorden:'Why not?' Zer0.3 PF'''),
+                                  ),
+                                  // color: Colors.white,
+                                ),
+                              ),
+                              Expanded(
+                                  child: Container(
                                 margin: EdgeInsets.only(right: 10),
                                 child: Container(
-                                  padding: EdgeInsets.all(5),
-                                  child: getCard(190, 'assets/images/gs2.jpg',
-                                      '''Nike Jorden:'Why not?' Zer0.3 PF'''),
-                                ),
+                                    padding: EdgeInsets.all(5),
+                                    child: getCard(190, 'assets/images/gs2.jpg',
+                                        '''Nike Jorden:'Why not?' Zer0.3 PF''')),
                                 // color: Colors.white,
-                              ),
-                            ),
-                            Expanded(
-                                child: Container(
-                              margin: EdgeInsets.only(right: 10),
-                              child: Container(
-                                  padding: EdgeInsets.all(5),
-                                  child: getCard(190, 'assets/images/gs2.jpg',
-                                      '''Nike Jorden:'Why not?' Zer0.3 PF''')),
-                              // color: Colors.white,
-                            )),
-                          ],
+                              )),
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        height: 200,
-                        //color: Colors.blue,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Container(
+                        Container(
+                          margin: EdgeInsets.all(10),
+                          //height: 200,
+                          //color: Colors.blue,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 10),
+                                  child: Container(
+                                    padding: EdgeInsets.all(5),
+                                    child: getCard(175, 'assets/images/gs2.jpg',
+                                        '''Nike Jorden:'Why not?' Zer0.3 PF'''),
+                                  ),
+                                  // color: Colors.white,
+                                ),
+                              ),
+                              Expanded(
+                                  child: Container(
                                 margin: EdgeInsets.only(right: 10),
                                 child: Container(
-                                  padding: EdgeInsets.all(5),
-                                  child: getCard(175, 'assets/images/gs2.jpg',
-                                      '''Nike Jorden:'Why not?' Zer0.3 PF'''),
-                                ),
+                                    padding: EdgeInsets.all(5),
+                                    child: getCard(150, 'assets/images/gs2.jpg',
+                                        '''Nike Jorden:'Why not?' Zer0.3 PF''')),
                                 // color: Colors.white,
-                              ),
-                            ),
-                            Expanded(
-                                child: Container(
-                              margin: EdgeInsets.only(right: 10),
-                              child: Container(
-                                  padding: EdgeInsets.all(5),
-                                  child: getCard(150, 'assets/images/gs2.jpg',
-                                      '''Nike Jorden:'Why not?' Zer0.3 PF''')),
-                              // color: Colors.white,
-                            )),
-                          ],
+                              )),
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        height: 200,
-                        //color: Colors.blue,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Container(
+                        Container(
+                          margin: EdgeInsets.all(10),
+                          //height: 200,
+                          //color: Colors.blue,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 10),
+                                  child: Container(
+                                    padding: EdgeInsets.all(5),
+                                    child: getCard(180, 'assets/images/gs2.jpg',
+                                        '''Nike Jorden:'Why not?' Zer0.3 PF'''),
+                                  ),
+                                  // color: Colors.white,
+                                ),
+                              ),
+                              Expanded(
+                                  child: Container(
                                 margin: EdgeInsets.only(right: 10),
                                 child: Container(
-                                  padding: EdgeInsets.all(5),
-                                  child: getCard(180, 'assets/images/gs2.jpg',
-                                      '''Nike Jorden:'Why not?' Zer0.3 PF'''),
-                                ),
+                                    padding: EdgeInsets.all(5),
+                                    child: getCard(178, 'assets/images/gs2.jpg',
+                                        '''Nike Jorden:'Why not?' Zer0.3 PF''')),
                                 // color: Colors.white,
-                              ),
-                            ),
-                            Expanded(
-                                child: Container(
-                              margin: EdgeInsets.only(right: 10),
-                              child: Container(
-                                  padding: EdgeInsets.all(5),
-                                  child: getCard(178, 'assets/images/gs2.jpg',
-                                      '''Nike Jorden:'Why not?' Zer0.3 PF''')),
-                              // color: Colors.white,
-                            )),
-                          ],
+                              )),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  )
-                ],
+                      ],
+                    )
+                  ],
+                ),
               ),
             )
             //items
@@ -318,7 +320,7 @@ class _FirstPageState extends State<FirstPage> {
                   ),
                   Container(
                     margin: EdgeInsets.all(20),
-                    height: 20,
+                    // height: 20,
                     //color: Colors.blue,
                     child: Icon(
                       Icons.heart_broken_rounded,
