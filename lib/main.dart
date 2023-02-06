@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoping/bottomnavigationbar.dart';
 import 'package:shoping/get_start_page.dart';
 
 void main() {
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: GetStartPage(),
+      home: BottomNavigationBarPage(),
     );
   }
 }

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shoping/first_page.dart';
 
+List<String> list1 = <String>['43', '44', '45', '46'];
+List<String> list2 = <String>['43', '44', '45', '46'];
+List<String> list3 = <String>['43', '44', '45', '46'];
+
 class DescriptionPage extends StatefulWidget {
   const DescriptionPage({super.key});
 
@@ -9,6 +13,10 @@ class DescriptionPage extends StatefulWidget {
 }
 
 class _DescriptionPageState extends State<DescriptionPage> {
+  String dropdownValue1 = list1.first;
+  String dropdownValue2 = list2.first;
+  String dropdownValue3 = list3.first;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,13 +34,13 @@ class _DescriptionPageState extends State<DescriptionPage> {
                       radius: 15,
                       child: InkWell(
                         onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return FirstPage();
-                              },
-                            ),
-                          );
+                          Navigator.of(context).pop(
+                              // MaterialPageRoute(
+                              //   builder: (context) {
+                              //     return FirstPage();
+                              //   },
+                              // ),
+                              );
                         },
                         child: Icon(
                           Icons.arrow_back_ios_new,
@@ -151,36 +159,44 @@ class _DescriptionPageState extends State<DescriptionPage> {
               ),
             ),
             //image
-            Expanded(
+            Container(
               child: Card(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 elevation: 5,
                 child: Container(
-                  // color: Colors.white,
                   child: Container(
                     child: Column(children: [
                       Container(
-                        color: Colors.red,
+                        padding: EdgeInsets.all(15),
+                        alignment: AlignmentDirectional.topStart,
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              textAlign: TextAlign.left,
-                              'Description',
-                              style: TextStyle(
-                                  fontSize: 22, fontWeight: FontWeight.bold),
+                            Container(
+                              child: Text(
+                                textAlign: TextAlign.left,
+                                'Description',
+                                style: TextStyle(
+                                    fontSize: 22, fontWeight: FontWeight.bold),
+                              ),
                             ),
-                            Text(
-                              textAlign: TextAlign.left,
-                              '''Jorden 'Why Not?' Zer0.3 PF''',
-                              style:
-                                  TextStyle(fontSize: 12, color: Colors.grey),
+                            Container(
+                              child: Text(
+                                // textAlign: TextAlign.left,
+                                '''Jorden 'Why Not?' Zer0.3 PF,Jorden 'Why Not?' Zer0.3 PF,Jorden 'Why Not?' Zer0.3 PF,Jorden 'Why Not?' Zer0.3 PF,Jorden 'Why Not?' Zer0.3 PF,Jorden 'Why Not?' Zer0.3 PF,Jorden 'Why Not?' Zer0.3 PF,''',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
                           ],
                         ),
                       ),
                       //description  of item
                       Container(
+                        margin: EdgeInsets.only(left: 15),
                         child: Row(
                           children: [
                             Container(
@@ -225,6 +241,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                       ),
                       //retail prize
                       Container(
+                        margin: EdgeInsets.fromLTRB(15, 10, 0, 10),
                         child: Row(
                           children: [
                             Container(
@@ -299,7 +316,100 @@ class _DescriptionPageState extends State<DescriptionPage> {
                         ),
                       ),
                       //es.resell prize
-                      Container(),
+                      Container(
+                        child: Column(
+                          children: [
+                            Row(children: [
+                              Expanded(
+                                child: Container(
+                                  alignment: AlignmentDirectional.center,
+                                  child: Text('Size'),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  alignment: AlignmentDirectional.center,
+                                  child: Text('Color'),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  alignment: AlignmentDirectional.center,
+                                  child: Text('QTY'),
+                                ),
+                              ),
+                            ]),
+                            Row(children: [
+                              Expanded(
+                                child: Container(
+                                  margin: EdgeInsets.only(left: 20),
+                                  child: DropdownButton<String>(
+                                    value: dropdownValue1,
+                                    style: const TextStyle(
+                                        color: Colors.deepPurple),
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        dropdownValue1 = value!;
+                                      });
+                                    },
+                                    items: list1.map<DropdownMenuItem<String>>(
+                                        (String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value),
+                                      );
+                                    }).toList(),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  margin: EdgeInsets.only(left: 20),
+                                  child: DropdownButton<String>(
+                                    value: dropdownValue2,
+                                    style: const TextStyle(
+                                        color: Colors.deepPurple),
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        dropdownValue2 = value!;
+                                      });
+                                    },
+                                    items: list2.map<DropdownMenuItem<String>>(
+                                        (String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value),
+                                      );
+                                    }).toList(),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  margin: EdgeInsets.only(left: 20),
+                                  child: DropdownButton<String>(
+                                    value: dropdownValue3,
+                                    style: const TextStyle(
+                                        color: Colors.deepPurple),
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        dropdownValue3 = value!;
+                                      });
+                                    },
+                                    items: list3.map<DropdownMenuItem<String>>(
+                                        (String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value),
+                                      );
+                                    }).toList(),
+                                  ),
+                                ),
+                              ),
+                            ]),
+                          ],
+                        ),
+                      ),
                       //selection card
                       Container(),
                       //add  to beg button

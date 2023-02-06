@@ -8,41 +8,6 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
-  int _selectedIndex = 0;
-
-  // final List<Widget> _pages = [
-  //   FirstPage(),
-  //   Icon(
-  //     Icons.message,
-  //     size: 150,
-  //   ),
-  //   Icon(
-  //     Icons.heart_broken,
-  //     size: 150,
-  //   ),
-  //   CartPage(),
-  //   Icon(
-  //     Icons.person,
-  //     size: 150,
-  //   ),
-  // ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      if (_selectedIndex == 3) {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) {
-              _selectedIndex = 0;
-              return CartPage();
-            },
-          ),
-        );
-      }
-    });
-  }
-
   var price;
   var imagepath;
   var description;
@@ -50,39 +15,6 @@ class _FirstPageState extends State<FirstPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 221, 241, 250),
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 10,
-        backgroundColor: Colors.white,
-        iconSize: 24,
-        unselectedItemColor: Theme.of(context).focusColor.withOpacity(1),
-        selectedIconTheme: IconThemeData(size: 30),
-        selectedItemColor: Colors.greenAccent,
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.heart_broken),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_bag),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: '',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -200,7 +132,7 @@ class _FirstPageState extends State<FirstPage> {
                     children: [
                       Container(
                         margin: EdgeInsets.all(10),
-                        height: 200,
+                        //height: 200,
                         //color: Colors.blue,
                         child: Row(
                           children: [

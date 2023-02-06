@@ -9,58 +9,9 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  int _selectedIndex = 0;
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      if (_selectedIndex == 0) {
-        Navigator.of(context).pop(
-          MaterialPageRoute(
-            builder: (context) {
-              return CartPage();
-            },
-          ),
-        );
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 10,
-        backgroundColor: Colors.white,
-        iconSize: 24,
-        unselectedItemColor: Theme.of(context).focusColor.withOpacity(1),
-        selectedIconTheme: IconThemeData(size: 30),
-        selectedItemColor: Colors.greenAccent,
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.heart_broken),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_bag),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: '',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-      ),
       backgroundColor: Color.fromARGB(255, 221, 241, 250),
       body: SafeArea(
         child: Column(

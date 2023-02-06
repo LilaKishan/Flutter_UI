@@ -12,6 +12,7 @@ class BottomNavigationBarPage extends StatefulWidget {
 
 class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
   int _selectedIndex = 0;
+  bool? ispage = false;
 
   final List<Widget> _pages = [
     FirstPage(),
@@ -73,7 +74,8 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
       ),
-      body: _pages.elementAt(_selectedIndex),
+      body:
+          _selectedIndex == 0 ? FirstPage() : _pages.elementAt(_selectedIndex),
     );
   }
 }
