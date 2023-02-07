@@ -78,8 +78,6 @@ class _CartPageState extends State<CartPage> {
             Expanded(
               child: Container(
                 child: Container(
-                  //color: Colors.amber,
-                  //height: 430,
                   padding: EdgeInsets.all(5),
                   child: SingleChildScrollView(
                     child: Column(

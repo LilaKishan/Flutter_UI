@@ -16,6 +16,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
   String dropdownValue1 = list1.first;
   String dropdownValue2 = list2.first;
   String dropdownValue3 = list3.first;
+  bool? onTap = false;
 
   @override
   Widget build(BuildContext context) {
@@ -120,9 +121,22 @@ class _DescriptionPageState extends State<DescriptionPage> {
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 10),
-                          child: Icon(
-                            Icons.heart_broken,
-                            color: Colors.red,
+                          child: InkWell(
+                            onTap: () {
+                              setState(() {
+                                if (onTap == false) {
+                                  onTap = true;
+                                } else {
+                                  onTap = false;
+                                }
+                              });
+                            },
+                            child: Icon(
+                              onTap == false
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              color: Colors.red,
+                            ),
                           ),
                         ),
                       ],
@@ -147,7 +161,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                   ),
                   Expanded(
                     child: Container(
-                      margin: EdgeInsets.only(left: 5),
+                      //margin: EdgeInsets.only(left: 5),
                       child: CircleAvatar(
                         child: Icon(
                           Icons.person,
@@ -316,9 +330,6 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                       ),
                                     ],
                                   ),
-                                  decoration: BoxDecoration(
-                                      //color: Colors.red,
-                                      ),
                                 ),
                               ],
                             ),
@@ -445,20 +456,19 @@ class _DescriptionPageState extends State<DescriptionPage> {
                             ),
                           ),
                           //selection card
-                          Container(
-                            alignment: AlignmentDirectional.center,
-                            margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
                             child: Container(
                                 color: Color.fromARGB(255, 13, 216, 223),
+                                margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Container(
-                                      alignment: AlignmentDirectional.center,
                                       child: Text("Add To Bag"),
                                       margin: EdgeInsets.all(10),
                                     ),
                                     Container(
-                                      alignment: AlignmentDirectional.center,
                                       child: Icon(Icons.shopping_bag_outlined),
                                       margin: EdgeInsets.only(left: 10),
                                     )

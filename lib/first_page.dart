@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoping/cart_page.dart';
+import 'package:shoping/demo.dart';
 import 'package:shoping/description_page.dart';
 
 class FirstPage extends StatefulWidget {
@@ -8,9 +9,23 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
-  var price;
-  var imagepath;
-  var description;
+  bool onTap = false;
+  int _selectIndex = 0;
+
+  List<String> price = ['250', '180', '230', '190'];
+  List<String> description = [
+    '''Nike Jorden:'Why not?' Zer0.3 PF''',
+    'Nike Joyride CC3 Setter',
+    'Nike Jorden Aerospace 720',
+    'Nike Air Jorden Retro 7 SE'
+  ];
+  List<String> imagepath = [
+    'assets/images/1.png',
+    'assets/images/2.png',
+    'assets/images/3.png',
+    'assets/images/4.png'
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +59,7 @@ class _FirstPageState extends State<FirstPage> {
                 ],
               ),
             ),
-            //menu 
+            //menu
             Container(
               height: 50,
               margin: EdgeInsets.all(25),
@@ -124,132 +139,39 @@ class _FirstPageState extends State<FirstPage> {
             //listcategories
             Expanded(
               child: Container(
-                //color: Colors.red,
-                //height: 380,
-                child: ListView(
+                child: ListView.builder(
+                  itemCount: price.length,
+                  itemBuilder: (context, index) {
+                    if (index % 2 == 0) {
+                      return Container(
+                        alignment: Alignment.center,
+                        margin: EdgeInsets.all(2),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            getCard(price[index], imagepath[index],
+                                description[index]),
+                            getCard(price[index + 1], imagepath[index + 1],
+                                description[index + 1]),
+                          ],
+                        ),
+                      );
+                    } else {
+                      return Container(
+                        margin: EdgeInsets.all(2),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            getCard(price[index], imagepath[index],
+                                description[index]),
+                            getCard(price[index - 1], imagepath[index - 1],
+                                description[index - 1]),
+                          ],
+                        ),
+                      );
+                    }
+                  },
                   scrollDirection: Axis.vertical,
-                  children: [
-                    Column(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.all(10),
-                          //height: 200,
-                          //color: Colors.blue,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  margin: EdgeInsets.only(right: 10),
-                                  child: Container(
-                                    padding: EdgeInsets.all(5),
-                                    child: getCard(180, 'assets/images/gs2.jpg',
-                                        '''Nike Jorden:'Why not?' Zer0.3 PF'''),
-                                  ),
-                                  // color: Colors.white,
-                                ),
-                              ),
-                              Expanded(
-                                  child: Container(
-                                margin: EdgeInsets.only(right: 10),
-                                child: Container(
-                                    padding: EdgeInsets.all(5),
-                                    child: getCard(175, 'assets/images/gs2.jpg',
-                                        '''Nike Jorden:'Why not?' Zer0.3 PF''')),
-                                // color: Colors.white,
-                              )),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(10),
-                          //height: 200,
-                          //color: Colors.blue,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  margin: EdgeInsets.only(right: 10),
-                                  child: Container(
-                                    padding: EdgeInsets.all(5),
-                                    child: getCard(190, 'assets/images/gs2.jpg',
-                                        '''Nike Jorden:'Why not?' Zer0.3 PF'''),
-                                  ),
-                                  // color: Colors.white,
-                                ),
-                              ),
-                              Expanded(
-                                  child: Container(
-                                margin: EdgeInsets.only(right: 10),
-                                child: Container(
-                                    padding: EdgeInsets.all(5),
-                                    child: getCard(190, 'assets/images/gs2.jpg',
-                                        '''Nike Jorden:'Why not?' Zer0.3 PF''')),
-                                // color: Colors.white,
-                              )),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(10),
-                          //height: 200,
-                          //color: Colors.blue,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  margin: EdgeInsets.only(right: 10),
-                                  child: Container(
-                                    padding: EdgeInsets.all(5),
-                                    child: getCard(175, 'assets/images/gs2.jpg',
-                                        '''Nike Jorden:'Why not?' Zer0.3 PF'''),
-                                  ),
-                                  // color: Colors.white,
-                                ),
-                              ),
-                              Expanded(
-                                  child: Container(
-                                margin: EdgeInsets.only(right: 10),
-                                child: Container(
-                                    padding: EdgeInsets.all(5),
-                                    child: getCard(150, 'assets/images/gs2.jpg',
-                                        '''Nike Jorden:'Why not?' Zer0.3 PF''')),
-                                // color: Colors.white,
-                              )),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(10),
-                          //height: 200,
-                          //color: Colors.blue,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  margin: EdgeInsets.only(right: 10),
-                                  child: Container(
-                                    padding: EdgeInsets.all(5),
-                                    child: getCard(180, 'assets/images/gs2.jpg',
-                                        '''Nike Jorden:'Why not?' Zer0.3 PF'''),
-                                  ),
-                                  // color: Colors.white,
-                                ),
-                              ),
-                              Expanded(
-                                  child: Container(
-                                margin: EdgeInsets.only(right: 10),
-                                child: Container(
-                                    padding: EdgeInsets.all(5),
-                                    child: getCard(178, 'assets/images/gs2.jpg',
-                                        '''Nike Jorden:'Why not?' Zer0.3 PF''')),
-                                // color: Colors.white,
-                              )),
-                            ],
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
                 ),
               ),
             )
@@ -281,14 +203,14 @@ class _FirstPageState extends State<FirstPage> {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return DescriptionPage();
+              return Demo();
             },
           ),
         );
       },
       child: Card(
-        margin: EdgeInsets.all(5),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        margin: EdgeInsets.all(10),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         elevation: 10,
         child: Column(
           children: [
@@ -296,36 +218,47 @@ class _FirstPageState extends State<FirstPage> {
               child: Row(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(left: 25),
-                    height: 20,
+                    alignment: AlignmentDirectional.topStart,
+                    padding: EdgeInsets.all(5),
+                    margin: EdgeInsets.only(right: 25),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(
-                          '\$',
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Color.fromARGB(255, 13, 216, 223),
+                        Container(
+                          child: Text(
+                            '\$',
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Color.fromARGB(255, 13, 216, 223),
+                            ),
                           ),
                         ),
-                        Text(
-                          '${price}',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                        Container(
+                          child: Text(
+                            '${price}',
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ],
                     ),
-                    decoration: BoxDecoration(
-                        //color: Colors.red,
-                        ),
                   ),
                   Container(
-                    margin: EdgeInsets.all(20),
-                    // height: 20,
-                    //color: Colors.blue,
-                    child: Icon(
-                      Icons.heart_broken_rounded,
-                      size: 20,
-                      color: Colors.redAccent,
+                    margin: EdgeInsets.only(left: 27),
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          if (onTap == false) {
+                            onTap = true;
+                          } else {
+                            onTap = false;
+                          }
+                        });
+                      },
+                      child: Icon(
+                        onTap == false ? Icons.favorite : Icons.favorite_border,
+                        color: Colors.red,
+                      ),
                     ),
                   ),
                 ],
@@ -338,13 +271,16 @@ class _FirstPageState extends State<FirstPage> {
                 imagepath,
                 height: 70,
                 width: 90,
+                fit: BoxFit.cover,
               ),
             ),
             //image in card
             Container(
+              padding: EdgeInsets.fromLTRB(12, 5, 12, 8),
+              width: 140,
               child: Text(
                 description,
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.left,
                 style: TextStyle(
                   fontSize: 13,
                 ),
