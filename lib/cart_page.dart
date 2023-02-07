@@ -3,12 +3,16 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:shoping/first_page.dart';
 
+List<String> list1 = <String>['43', '44', '45', '46'];
+
 class CartPage extends StatefulWidget {
   @override
   State<CartPage> createState() => _CartPageState();
 }
 
 class _CartPageState extends State<CartPage> {
+  String dropdownValue1 = list1.first;
+  int count = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -172,14 +176,14 @@ class _CartPageState extends State<CartPage> {
       elevation: 10,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Container(
-        height: 109,
+        height: 120,
         padding: EdgeInsets.all(3),
         //color: Colors.pinkAccent,
         margin: EdgeInsets.all(10),
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(left: 15),
+              margin: EdgeInsets.fromLTRB(8, 0, 0, 2),
               width: double.infinity,
               //color: Colors.green,
               child: Text(
@@ -199,11 +203,10 @@ class _CartPageState extends State<CartPage> {
                   children: [
                     Expanded(
                       child: Container(
-                        margin: EdgeInsets.all(5),
                         //color: Colors.red,
                         child: Column(children: [
                           Container(
-                            margin: EdgeInsets.only(left: 5),
+                            margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
                             padding: EdgeInsets.all(3),
                             // height: 20,
                             child: Container(
@@ -227,17 +230,24 @@ class _CartPageState extends State<CartPage> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.fromLTRB(0, 2, 10, 2),
                             child: Row(children: [
                               Expanded(
-                                flex: 2,
                                 child: Container(
                                   //color: Colors.green,
                                   child: Row(children: [
                                     Expanded(
-                                      child: Container(
-                                        // color: Colors.red,
-                                        child: Icon(Icons.remove),
+                                      child: InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            if (count > 1) {
+                                              count--;
+                                            }
+                                          });
+                                        },
+                                        child: Container(
+                                          // color: Colors.red,
+                                          child: Icon(Icons.remove),
+                                        ),
                                       ),
                                     ),
                                     Expanded(
@@ -245,7 +255,7 @@ class _CartPageState extends State<CartPage> {
                                         // color: Colors.blue,
                                         child: Text(
                                           textAlign: TextAlign.center,
-                                          '1',
+                                          '$count',
                                           style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold),
@@ -254,8 +264,15 @@ class _CartPageState extends State<CartPage> {
                                     ),
                                     Expanded(
                                       child: Container(
-                                        child: Icon(
-                                          Icons.add,
+                                        child: InkWell(
+                                          onTap: () {
+                                            setState(() {
+                                              count++;
+                                            });
+                                          },
+                                          child: Icon(
+                                            Icons.add,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -265,13 +282,29 @@ class _CartPageState extends State<CartPage> {
                               //+ 1 -
                               Expanded(
                                 child: Container(
-                                  padding: EdgeInsets.all(5),
                                   //color: Colors.red,
-                                  child: Text('43',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.bold)),
+                                  child: Container(
+                                    alignment: AlignmentDirectional.center,
+                                    //margin: EdgeInsets.only(left: 20),
+                                    child: DropdownButton<String>(
+                                      value: dropdownValue1,
+                                      style: const TextStyle(
+                                          color: Colors.deepPurple),
+                                      onChanged: (String? value) {
+                                        setState(() {
+                                          dropdownValue1 = value!;
+                                        });
+                                      },
+                                      items: list1
+                                          .map<DropdownMenuItem<String>>(
+                                              (String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                    ),
+                                  ),
                                 ),
                               ),
                               //dropdown

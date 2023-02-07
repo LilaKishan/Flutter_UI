@@ -59,7 +59,7 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.heart_broken),
+            icon: Icon(Icons.favorite),
             label: '',
           ),
           BottomNavigationBarItem(
