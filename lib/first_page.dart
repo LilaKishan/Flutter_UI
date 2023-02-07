@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoping/cart_page.dart';
-import 'package:shoping/demo.dart';
+
 import 'package:shoping/description_page.dart';
 
 class FirstPage extends StatefulWidget {
@@ -203,7 +203,7 @@ class _FirstPageState extends State<FirstPage> {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return Demo();
+              return DescriptionPage();
             },
           ),
         );
