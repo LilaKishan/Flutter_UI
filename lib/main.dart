@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shoping/bottomnavigationbar.dart';
-import 'package:shoping/get_start_page.dart';
 
 void main() {
   runApp(const MyApp());

@@ -13,23 +13,29 @@ class BottomNavigationBarPage extends StatefulWidget {
 class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
   int _selectedIndex = 0;
   bool? ispage = false;
-
-  final List<Widget> _pages = [
-    FirstPage(),
-    Icon(
-      Icons.message,
-      size: 150,
-    ),
-    Icon(
-      Icons.heart_broken,
-      size: 150,
-    ),
-    CartPage(),
-    Icon(
-      Icons.person,
-      size: 150,
-    ),
-  ];
+  void changeSelectedIndex(int i) => setState(() => _selectedIndex = i);
+  late final List<Widget> _pages;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _pages = [
+      FirstPage(changeSelectedIndex),
+      Icon(
+        Icons.message,
+        size: 150,
+      ),
+      Icon(
+        Icons.heart_broken,
+        size: 150,
+      ),
+      CartPage(),
+      Icon(
+        Icons.person,
+        size: 150,
+      ),
+    ];
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -74,8 +80,7 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
       ),
-      body:
-          _selectedIndex == 0 ? FirstPage() : _pages.elementAt(_selectedIndex),
+      body: _selectedIndex == 0 ? _pages[0] : _pages.elementAt(_selectedIndex),
     );
   }
 }

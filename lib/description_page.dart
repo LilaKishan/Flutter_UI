@@ -1,22 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:shoping/cart_page.dart';
 import 'package:shoping/first_page.dart';
+import 'package:shoping/constdata.dart';
 
 List<String> list1 = <String>['43', '44', '45', '46'];
 List<String> list2 = <String>['Blue', 'Black', 'White'];
 List<String> list3 = <String>['1', '2', '3', '4'];
 
 class DescriptionPage extends StatefulWidget {
-  const DescriptionPage({super.key});
+  @required
+  //Map<String, dynamic> data;
+  Function favChanged;
+  int index, i;
+  bool isFav;
+  // bool isFavourite;
+  DescriptionPage(this.favChanged, this.index, this.i, this.isFav, {super.key});
 
   @override
   State<DescriptionPage> createState() => _DescriptionPageState();
 }
 
 class _DescriptionPageState extends State<DescriptionPage> {
-  String dropdownValue1 = list1.first;
-  String dropdownValue2 = list2.first;
-  String dropdownValue3 = list3.first;
-  bool? onTap = false;
+  String dropdownValue1 = list1.first,
+      dropdownValue2 = list2.first,
+      dropdownValue3 = list3.first;
+  // price = 'price',
+  // description = 'description',
+  // imagepath = 'imagepath',
+  // isFav = 'isFav';
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +48,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                         radius: 15,
                         child: InkWell(
                           onTap: () {
-                            Navigator.of(context).pop();
+                            Navigator.of(context).pop(0);
                           },
                           child: Icon(
                             Icons.arrow_back_ios_new,
@@ -90,8 +101,8 @@ class _DescriptionPageState extends State<DescriptionPage> {
                   Container(
                     margin: EdgeInsets.only(top: 5),
                     child: Text(
+                      description[widget.index],
                       textAlign: TextAlign.left,
-                      '''Jorden 'Why Not?' Zer0.3 PF''',
                       style:
                           TextStyle(fontSize: 33, fontWeight: FontWeight.bold),
                     ),
@@ -123,16 +134,11 @@ class _DescriptionPageState extends State<DescriptionPage> {
                           margin: EdgeInsets.only(left: 10),
                           child: InkWell(
                             onTap: () {
-                              setState(() {
-                                if (onTap == false) {
-                                  onTap = true;
-                                } else {
-                                  onTap = false;
-                                }
-                              });
+                              widget.favChanged(widget.index, widget.i);
+                              setState(() => widget.isFav = !widget.isFav);
                             },
                             child: Icon(
-                              onTap == false
+                              widget.isFav == false
                                   ? Icons.favorite
                                   : Icons.favorite_border,
                               color: Colors.red,
@@ -153,7 +159,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                   Expanded(
                     child: Container(
                       child: Image.asset(
-                        'assets/images/gs2.jpg',
+                        imagepath[widget.index],
                         fit: BoxFit.fill,
                         alignment: Alignment.center,
                       ),
@@ -245,7 +251,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                         ),
                                       ),
                                       Text(
-                                        '180',
+                                        price[widget.index],
                                         style: TextStyle(
                                             fontSize: 17,
                                             fontWeight: FontWeight.bold),
@@ -291,7 +297,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                         ),
                                       ),
                                       Text(
-                                        '180',
+                                        price[widget.index],
                                         style: TextStyle(
                                             fontSize: 17,
                                             fontWeight: FontWeight.bold),
@@ -458,22 +464,29 @@ class _DescriptionPageState extends State<DescriptionPage> {
                           //selection card
                           ClipRRect(
                             borderRadius: BorderRadius.circular(20),
-                            child: Container(
-                                color: Color.fromARGB(255, 13, 216, 223),
-                                margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      child: Text("Add To Bag"),
-                                      margin: EdgeInsets.all(10),
-                                    ),
-                                    Container(
-                                      child: Icon(Icons.shopping_bag_outlined),
-                                      margin: EdgeInsets.only(left: 10),
-                                    )
-                                  ],
-                                )),
+                            child: InkWell(
+                              onTap: () {
+                                checkOut.add(widget.index);
+                                Navigator.of(context).pop(3);
+                              },
+                              child: Container(
+                                  color: Color.fromARGB(255, 13, 216, 223),
+                                  margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        child: Text("Add To Bag"),
+                                        margin: EdgeInsets.all(10),
+                                      ),
+                                      Container(
+                                        child:
+                                            Icon(Icons.shopping_bag_outlined),
+                                        margin: EdgeInsets.only(left: 10),
+                                      )
+                                    ],
+                                  )),
+                            ),
                           ),
                           //add  to beg button
                         ]),

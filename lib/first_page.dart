@@ -2,29 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:shoping/cart_page.dart';
 
 import 'package:shoping/description_page.dart';
+import 'package:shoping/constdata.dart';
 
 class FirstPage extends StatefulWidget {
+  Function changePage;
+  FirstPage(this.changePage);
   @override
   State<FirstPage> createState() => _FirstPageState();
 }
 
 class _FirstPageState extends State<FirstPage> {
-  bool onTap = false;
   int _selectIndex = 0;
-
-  List<String> price = ['250', '180', '230', '190'];
-  List<String> description = [
-    '''Nike Jorden:'Why not?' Zer0.3 PF''',
-    'Nike Joyride CC3 Setter',
-    'Nike Jorden Aerospace 720',
-    'Nike Air Jorden Retro 7 SE'
-  ];
-  List<String> imagepath = [
-    'assets/images/1.png',
-    'assets/images/2.png',
-    'assets/images/3.png',
-    'assets/images/4.png'
-  ];
+  List<List<bool>> onTap = [];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    for (var i = 0; i < 4; i++) {
+      onTap.add(List.filled(4, false));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -142,34 +139,29 @@ class _FirstPageState extends State<FirstPage> {
                 child: ListView.builder(
                   itemCount: price.length,
                   itemBuilder: (context, index) {
-                    if (index % 2 == 0) {
-                      return Container(
-                        alignment: Alignment.center,
-                        margin: EdgeInsets.all(2),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            getCard(price[index], imagepath[index],
-                                description[index]),
-                            getCard(price[index + 1], imagepath[index + 1],
-                                description[index + 1]),
-                          ],
-                        ),
-                      );
-                    } else {
-                      return Container(
-                        margin: EdgeInsets.all(2),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            getCard(price[index], imagepath[index],
-                                description[index]),
-                            getCard(price[index - 1], imagepath[index - 1],
-                                description[index - 1]),
-                          ],
-                        ),
-                      );
-                    }
+                    return Container(
+                      alignment: Alignment.center,
+                      margin: EdgeInsets.all(2),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: getCard(price[index], imagepath[index],
+                            description[index], index),
+                      ),
+                    );
+                    //   } else {
+                    //     return Container(
+                    //       margin: EdgeInsets.all(2),
+                    //       child: Row(
+                    //         mainAxisAlignment: MainAxisAlignment.center,
+                    //         children: [
+                    //           getCard(price[index], imagepath[index],
+                    //               description[index], index),
+                    //           getCard(price[index - 1], imagepath[index - 1],
+                    //               description[index - 1], index),
+                    //         ],
+                    //       ),
+                    //     );
+                    //   }
                   },
                   scrollDirection: Axis.vertical,
                 ),
@@ -182,6 +174,8 @@ class _FirstPageState extends State<FirstPage> {
     );
   }
 
+  void favChanged(int index, int i) =>
+      setState(() => onTap[index][i] = !onTap[index][i]);
   Widget GetContainer(textdemo) {
     return Expanded(
       child: Container(
@@ -197,99 +191,107 @@ class _FirstPageState extends State<FirstPage> {
     );
   }
 
-  Widget getCard(price, imagepath, description) {
-    return InkWell(
-      onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) {
-              return DescriptionPage();
-            },
-          ),
-        );
-      },
-      child: Card(
-        margin: EdgeInsets.all(10),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        elevation: 10,
-        child: Column(
-          children: [
-            Container(
-              child: Row(
-                children: [
-                  Container(
-                    alignment: AlignmentDirectional.topStart,
-                    padding: EdgeInsets.all(5),
-                    margin: EdgeInsets.only(right: 25),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          child: Text(
-                            '\$',
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Color.fromARGB(255, 13, 216, 223),
+  List<Widget> getCard(price, imagepath, description, int index) {
+    List<Widget> lst = [];
+    for (var i = 0; i < 2; i++) {
+      lst.add(
+        InkWell(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) {
+                  return DescriptionPage(favChanged, index, i, onTap[index][i]
+                      // {
+                      //   'price': price,
+                      //   'description': description,
+                      //   'imagepath': imagepath,
+                      //   'isFav': onTap[index][i],
+                      // }
+                      );
+                },
+              ),
+            ).then((value) => widget.changePage(value));
+          },
+          child: Card(
+            margin: EdgeInsets.all(10),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            elevation: 10,
+            child: Column(
+              children: [
+                Container(
+                  child: Row(
+                    children: [
+                      Container(
+                        alignment: AlignmentDirectional.topStart,
+                        padding: EdgeInsets.all(5),
+                        margin: EdgeInsets.only(right: 25),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              child: Text(
+                                '\$',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Color.fromARGB(255, 13, 216, 223),
+                                ),
+                              ),
                             ),
-                          ),
+                            Container(
+                              child: Text(
+                                '${price}',
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
                         ),
-                        Container(
-                          child: Text(
-                            '${price}',
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 27),
-                    child: InkWell(
-                      onTap: () {
-                        setState(() {
-                          if (onTap == false) {
-                            onTap = true;
-                          } else {
-                            onTap = false;
-                          }
-                        });
-                      },
-                      child: Icon(
-                        onTap == false ? Icons.favorite : Icons.favorite_border,
-                        color: Colors.red,
                       ),
+                      Container(
+                        margin: EdgeInsets.only(left: 27),
+                        child: InkWell(
+                          onTap: () => favChanged(index, i),
+                          child: Icon(
+                            onTap[index][i] == false
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                //heart icon with prize
+                Container(
+                  padding: EdgeInsets.only(bottom: 8),
+                  child: Image.asset(
+                    imagepath,
+                    height: 70,
+                    width: 90,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                //image in card
+                Container(
+                  padding: EdgeInsets.fromLTRB(12, 5, 12, 8),
+                  width: 140,
+                  child: Text(
+                    description,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontSize: 13,
                     ),
                   ),
-                ],
-              ),
-            ),
-            //heart icon with prize
-            Container(
-              padding: EdgeInsets.only(bottom: 8),
-              child: Image.asset(
-                imagepath,
-                height: 70,
-                width: 90,
-                fit: BoxFit.cover,
-              ),
-            ),
-            //image in card
-            Container(
-              padding: EdgeInsets.fromLTRB(12, 5, 12, 8),
-              width: 140,
-              child: Text(
-                description,
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  fontSize: 13,
                 ),
-              ),
+                //description
+              ],
             ),
-            //description
-          ],
+          ),
         ),
-      ),
-    );
+      );
+    }
+    return lst;
   }
 }
