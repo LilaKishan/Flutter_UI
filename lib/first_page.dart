@@ -16,7 +16,6 @@ class _FirstPageState extends State<FirstPage> {
   List<List<bool>> onTap = [];
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     for (var i = 0; i < 4; i++) {
       onTap.add(List.filled(4, false));
@@ -31,14 +30,20 @@ class _FirstPageState extends State<FirstPage> {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.all(10),
+              margin: EdgeInsets.fromLTRB(8, 15, 8, 8),
               child: Row(
                 children: [
                   Expanded(
-                      child: Container(
-                          margin: EdgeInsets.only(left: 13),
-                          alignment: AlignmentDirectional.topStart,
-                          child: Icon(Icons.menu))),
+                    child: Container(
+                      margin: EdgeInsets.only(left: 13),
+                      alignment: AlignmentDirectional.topStart,
+                      child: Image.asset(
+                        'assets/images/menu.png',
+                        fit: BoxFit.fill,
+                        width: 30,
+                      ),
+                    ),
+                  ),
                   Expanded(
                     child: Container(
                       margin: EdgeInsets.only(right: 13),
@@ -114,6 +119,7 @@ class _FirstPageState extends State<FirstPage> {
                   'Categories',
                   textAlign: TextAlign.left,
                   style: TextStyle(
+                    fontFamily: 'NotoSans',
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                   ),
@@ -125,7 +131,7 @@ class _FirstPageState extends State<FirstPage> {
               margin: EdgeInsets.all(10),
               child: Row(
                 children: [
-                  GetContainer('Nike'),
+                  GetContainer('Nike', clr: Colors.black),
                   GetContainer('Addidas'),
                   GetContainer('Puma'),
                   GetContainer('Balenciaga'),
@@ -148,20 +154,6 @@ class _FirstPageState extends State<FirstPage> {
                             description[index], index),
                       ),
                     );
-                    //   } else {
-                    //     return Container(
-                    //       margin: EdgeInsets.all(2),
-                    //       child: Row(
-                    //         mainAxisAlignment: MainAxisAlignment.center,
-                    //         children: [
-                    //           getCard(price[index], imagepath[index],
-                    //               description[index], index),
-                    //           getCard(price[index - 1], imagepath[index - 1],
-                    //               description[index - 1], index),
-                    //         ],
-                    //       ),
-                    //     );
-                    //   }
                   },
                   scrollDirection: Axis.vertical,
                 ),
@@ -176,16 +168,20 @@ class _FirstPageState extends State<FirstPage> {
 
   void favChanged(int index, int i) =>
       setState(() => onTap[index][i] = !onTap[index][i]);
-  Widget GetContainer(textdemo) {
+  Widget GetContainer(textdemo, {clr = Colors.grey}) {
     return Expanded(
       child: Container(
         margin: EdgeInsets.all(2),
-        child: Text(
-          textdemo,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 15,
+        child: InkWell(
+          focusColor: Colors.black,
+          child: Text(
+            textdemo,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontFamily: 'NotoSans', fontSize: 12, color: clr),
           ),
+          onTap: () {
+            //clr = Colors.black;
+          },
         ),
       ),
     );
@@ -200,14 +196,7 @@ class _FirstPageState extends State<FirstPage> {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) {
-                  return DescriptionPage(favChanged, index, i, onTap[index][i]
-                      // {
-                      //   'price': price,
-                      //   'description': description,
-                      //   'imagepath': imagepath,
-                      //   'isFav': onTap[index][i],
-                      // }
-                      );
+                  return DescriptionPage(favChanged, index, i, onTap[index][i]);
                 },
               ),
             ).then((value) => widget.changePage(value));
@@ -254,8 +243,8 @@ class _FirstPageState extends State<FirstPage> {
                           onTap: () => favChanged(index, i),
                           child: Icon(
                             onTap[index][i] == false
-                                ? Icons.favorite
-                                : Icons.favorite_border,
+                                ? Icons.favorite_border
+                                : Icons.favorite,
                             color: Colors.red,
                           ),
                         ),

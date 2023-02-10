@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:shoping/first_page.dart';
+
 import 'package:shoping/constdata.dart';
 
 List<String> list1 = <String>['43', '44', '45', '46'];
@@ -27,14 +27,20 @@ class _CartPageState extends State<CartPage> {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.all(10),
+              margin: EdgeInsets.fromLTRB(8, 15, 8, 8),
               child: Row(
                 children: [
                   Expanded(
-                      child: Container(
-                          margin: EdgeInsets.only(left: 13),
-                          alignment: AlignmentDirectional.topStart,
-                          child: Icon(Icons.menu))),
+                    child: Container(
+                      margin: EdgeInsets.only(left: 13),
+                      alignment: AlignmentDirectional.topStart,
+                      child: Image.asset(
+                        'assets/images/menu.png',
+                        fit: BoxFit.fill,
+                        width: 30,
+                      ),
+                    ),
+                  ),
                   Expanded(
                     child: Container(
                       margin: EdgeInsets.only(right: 13),
@@ -66,8 +72,11 @@ class _CartPageState extends State<CartPage> {
                     child: Text(
                       textAlign: TextAlign.left,
                       'My Bag',
-                      style:
-                          TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'NotoSans',
+                      ),
                     ),
                   ),
                   Container(
@@ -157,7 +166,11 @@ class _CartPageState extends State<CartPage> {
                       style:
                           ButtonStyle(elevation: MaterialStateProperty.all(10)),
                       onPressed: () {},
-                      child: Text('Checkout', style: TextStyle(fontSize: 20)),
+                      child: Text('Checkout',
+                          style: TextStyle(
+                            fontSize: 20,
+                            //fontFamily: 'NotoSans',
+                          )),
                     ),
                   ),
                 ],
