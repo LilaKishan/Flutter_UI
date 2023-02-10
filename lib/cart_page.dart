@@ -162,15 +162,24 @@ class _CartPageState extends State<CartPage> {
                       )),
                   Container(
                     margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                    child: ElevatedButton(
-                      style:
-                          ButtonStyle(elevation: MaterialStateProperty.all(10)),
-                      onPressed: () {},
-                      child: Text('Checkout',
+                    child: InkWell(
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(10),
+                        width: 200,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Color.fromARGB(255, 13, 216, 223),
+                        ),
+                        margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                        child: Text(
+                          'Checkout',
                           style: TextStyle(
-                            fontSize: 20,
-                            //fontFamily: 'NotoSans',
-                          )),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white),
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -336,10 +345,11 @@ class _CartPageState extends State<CartPage> {
                             child: Container(
                               //width: 20,
 
-                              margin: EdgeInsets.only(right: 10),
+                              //margin: EdgeInsets.fromLTRB(3, 2, 2, 10),
                               child: Image.asset(
                                 fit: BoxFit.fill,
-                                height: 60,
+                                height: 100,
+                                width: 120,
                                 alignment: AlignmentDirectional.topStart,
                                 imagepath[index],
                               ),

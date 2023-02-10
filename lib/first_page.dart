@@ -202,80 +202,85 @@ class _FirstPageState extends State<FirstPage> {
             ).then((value) => widget.changePage(value));
           },
           child: Card(
-            margin: EdgeInsets.all(10),
+            margin: EdgeInsets.all(13),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             elevation: 10,
-            child: Column(
-              children: [
-                Container(
-                  child: Row(
-                    children: [
-                      Container(
-                        alignment: AlignmentDirectional.topStart,
-                        padding: EdgeInsets.all(5),
-                        margin: EdgeInsets.only(right: 25),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              child: Text(
-                                '\$',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Color.fromARGB(255, 13, 216, 223),
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    child: Row(
+                      children: [
+                        Container(
+                          alignment: AlignmentDirectional.topStart,
+                          padding: EdgeInsets.all(5),
+                          margin: EdgeInsets.only(right: 25),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                child: Text(
+                                  '\$',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Color.fromARGB(255, 13, 216, 223),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Container(
-                              child: Text(
-                                '${price}',
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
+                              Container(
+                                child: Text(
+                                  '${price}',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(left: 27),
-                        child: InkWell(
-                          onTap: () => favChanged(index, i),
-                          child: Icon(
-                            onTap[index][i] == false
-                                ? Icons.favorite_border
-                                : Icons.favorite,
-                            color: Colors.red,
+                            ],
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                //heart icon with prize
-                Container(
-                  padding: EdgeInsets.only(bottom: 8),
-                  child: Image.asset(
-                    imagepath,
-                    height: 70,
-                    width: 90,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                //image in card
-                Container(
-                  padding: EdgeInsets.fromLTRB(12, 5, 12, 8),
-                  width: 140,
-                  child: Text(
-                    description,
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontSize: 13,
+                        Container(
+                          margin: EdgeInsets.only(left: 27),
+                          child: InkWell(
+                            onTap: () => favChanged(index, i),
+                            child: Icon(
+                              onTap[index][i] == false
+                                  ? Icons.favorite_border
+                                  : Icons.favorite,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-                //description
-              ],
+                  //heart icon with prize
+                  Container(
+                    padding: EdgeInsets.only(bottom: 8),
+                    child: Image.asset(
+                      imagepath,
+                      height: 80,
+                      width: 130,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  //image in card
+                  Container(
+                    padding: EdgeInsets.fromLTRB(12, 5, 12, 8),
+                    width: 140,
+                    child: Text(
+                      description,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 13,
+                      ),
+                    ),
+                  ),
+                  //description
+                ],
+              ),
             ),
           ),
         ),

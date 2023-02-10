@@ -24,7 +24,6 @@ class _DescriptionPageState extends State<DescriptionPage> {
   String dropdownValue1 = list1.first,
       dropdownValue2 = list2.first,
       dropdownValue3 = list3.first;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +109,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                     margin: EdgeInsets.only(top: 5),
                     child: Text(
                       textAlign: TextAlign.left,
-                      'Check and Pay Your Shoes ',
+                      '''Men's Sports Shoes ''',
                       style: TextStyle(
                           fontSize: 15,
                           fontFamily: 'NotoSans',
@@ -158,10 +157,12 @@ class _DescriptionPageState extends State<DescriptionPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(left: 40),
+                    margin: EdgeInsets.fromLTRB(10, 0, 0, 15),
                     child: Image.asset(
                       imagepath[widget.index],
-                      fit: BoxFit.fill,
+                      fit: BoxFit.fitWidth,
+                      height: 160,
+                      width: 300,
                       alignment: Alignment.center,
                     ),
                   ),
@@ -468,35 +469,37 @@ class _DescriptionPageState extends State<DescriptionPage> {
                           ),
                         ),
                         //selection card
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: InkWell(
-                            onTap: () {
-                              checkOut.add(widget.index);
-                              Navigator.of(context).pop(3);
-                            },
-                            child: Container(
+                        InkWell(
+                          onTap: () {
+                            checkOut.add(widget.index);
+                            Navigator.of(context).pop(3);
+                          },
+                          child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
                                 color: Color.fromARGB(255, 13, 216, 223),
-                                margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      child: Text(
-                                        "Add To Bag",
-                                        style: TextStyle(
-                                          fontFamily: 'NotoSans',
-                                        ),
+                              ),
+                              margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    child: Text(
+                                      "Add To Bag",
+                                      style: TextStyle(
+                                        fontFamily: 'NotoSans',
+                                        color: Colors.white,
                                       ),
-                                      margin: EdgeInsets.all(10),
                                     ),
-                                    Container(
-                                      child: Icon(Icons.shopping_bag_outlined),
-                                      margin: EdgeInsets.only(left: 10),
-                                    )
-                                  ],
-                                )),
-                          ),
+                                    margin: EdgeInsets.all(10),
+                                  ),
+                                  Container(
+                                    child: Icon(Icons.shopping_bag_outlined,
+                                        color: Colors.white),
+                                    margin: EdgeInsets.only(left: 10),
+                                  )
+                                ],
+                              )),
                         ),
                         //add  to beg button
                       ]),
