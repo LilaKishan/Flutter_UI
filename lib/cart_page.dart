@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import 'package:shoping/constdata.dart';
+import 'package:swipe/swipe.dart';
 
 List<String> list1 = <String>['43', '44', '45', '46'];
 
@@ -112,28 +113,30 @@ class _CartPageState extends State<CartPage> {
               // color: Colors.red,
               child: Column(
                 children: [
-                  Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Container(
-                        margin: EdgeInsets.all(10),
-                        child: Row(children: [
-                          Expanded(
-                            child: Container(
-                              //color: Colors.amber,
-                              // height: 20,
-                              child: Text(
-                                '${itemCount}  Items',
-                                textAlign: TextAlign.left,
-                                style:
-                                    TextStyle(color: Colors.grey, fontSize: 20),
+                  Swipe(
+                    onSwipeRight: () {
+                      Container();
+                    },
+                    child: Card(
+                        color: Color.fromARGB(255, 237, 248, 252),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Container(
+                          margin: EdgeInsets.all(10),
+                          child: Row(children: [
+                            Expanded(
+                              child: Container(
+                                //color: Colors.amber,
+                                // height: 20,
+                                child: Text(
+                                  '${itemCount}  Items',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      color: Colors.grey, fontSize: 20),
+                                ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              // color: Colors.blue,
-                              //height: 20,
+                            Expanded(
                               child: Container(
                                 margin: EdgeInsets.all(3),
                                 child: Row(
@@ -157,18 +160,19 @@ class _CartPageState extends State<CartPage> {
                                 ),
                               ),
                             ),
-                          ),
-                        ]),
-                      )),
+                          ]),
+                        )),
+                  ),
                   Container(
+                    padding: EdgeInsets.all(8),
                     margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                     child: InkWell(
                       child: Container(
                         alignment: Alignment.center,
-                        padding: EdgeInsets.all(10),
+                        padding: EdgeInsets.all(15),
                         width: 200,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(25),
                           color: Color.fromARGB(255, 13, 216, 223),
                         ),
                         margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
@@ -225,6 +229,7 @@ class _CartPageState extends State<CartPage> {
                       child: Row(
                         children: [
                           Expanded(
+                            flex: 4,
                             child: Container(
                               //color: Colors.red,
                               child: Column(children: [
@@ -342,14 +347,14 @@ class _CartPageState extends State<CartPage> {
                             ),
                           ),
                           Expanded(
+                            flex: 4,
                             child: Container(
-                              //width: 20,
-
-                              //margin: EdgeInsets.fromLTRB(3, 2, 2, 10),
+                              //color: Colors.red,
+                              height: 140,
+                              margin: EdgeInsets.fromLTRB(50, 0, 20, 0),
                               child: Image.asset(
+                                height: 150,
                                 fit: BoxFit.fill,
-                                height: 100,
-                                width: 120,
                                 alignment: AlignmentDirectional.topStart,
                                 imagepath[index],
                               ),

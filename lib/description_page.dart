@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:shoping/cart_page.dart';
 import 'package:shoping/first_page.dart';
 import 'package:shoping/constdata.dart';
@@ -6,6 +7,12 @@ import 'package:shoping/constdata.dart';
 List<String> list1 = <String>['43', '44', '45', '46'];
 List<String> list2 = <String>['Blue', 'Black', 'White'];
 List<String> list3 = <String>['1', '2', '3', '4'];
+List<Color> colors = [
+  Colors.red,
+  Colors.blue,
+  Colors.yellow,
+  Colors.brown,
+];
 
 class DescriptionPage extends StatefulWidget {
   @required
@@ -24,6 +31,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
   String dropdownValue1 = list1.first,
       dropdownValue2 = list2.first,
       dropdownValue3 = list3.first;
+  Color dropdownValue4 = colors.first;
 
   @override
   Widget build(BuildContext context) {
@@ -353,7 +361,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                             margin: EdgeInsets.all(20),
                             color: Color.fromARGB(255, 221, 241, 250),
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
+                                borderRadius: BorderRadius.circular(25)),
                             elevation: 3,
                             child: Container(
                               child: Column(
@@ -385,83 +393,127 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                     ]),
                                   ),
                                   Container(
-                                    child: Row(children: [
-                                      Expanded(
-                                        child: Container(
-                                          alignment:
-                                              AlignmentDirectional.center,
-                                          margin: EdgeInsets.only(left: 20),
-                                          child: DropdownButton<String>(
-                                            value: dropdownValue1,
-                                            style: const TextStyle(
-                                                color: Colors.deepPurple),
-                                            onChanged: (String? value) {
-                                              setState(() {
-                                                dropdownValue1 = value!;
-                                              });
-                                            },
-                                            items: list1
-                                                .map<DropdownMenuItem<String>>(
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: DropdownButtonHideUnderline(
+                                            child: Container(
+                                              alignment:
+                                                  AlignmentDirectional.center,
+                                              margin: EdgeInsets.only(left: 20),
+                                              child: DropdownButton<String>(
+                                                value: dropdownValue1,
+                                                icon: Icon(Icons
+                                                    .keyboard_arrow_down_outlined),
+                                                iconEnabledColor:
+                                                    Color.fromARGB(
+                                                        255, 13, 216, 223),
+                                                iconDisabledColor:
+                                                    Color.fromARGB(
+                                                        255, 13, 216, 223),
+                                                style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                                onChanged: (String? value) {
+                                                  setState(() {
+                                                    dropdownValue1 = value!;
+                                                  });
+                                                },
+                                                items: list1.map<
+                                                        DropdownMenuItem<
+                                                            String>>(
                                                     (String value) {
-                                              return DropdownMenuItem<String>(
-                                                value: value,
-                                                child: Text(value),
-                                              );
-                                            }).toList(),
+                                                  return DropdownMenuItem<
+                                                      String>(
+                                                    value: value,
+                                                    child: Text(
+                                                      value,
+                                                      style: TextStyle(
+                                                          fontSize: 23),
+                                                    ),
+                                                  );
+                                                }).toList(),
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      Expanded(
-                                        child: Container(
-                                          alignment:
-                                              AlignmentDirectional.center,
-                                          margin: EdgeInsets.only(left: 20),
-                                          child: DropdownButton<String>(
-                                            value: dropdownValue2,
-                                            style: const TextStyle(
-                                                color: Colors.deepPurple),
-                                            onChanged: (String? value) {
-                                              setState(() {
-                                                dropdownValue2 = value!;
-                                              });
-                                            },
-                                            items: list2
-                                                .map<DropdownMenuItem<String>>(
-                                                    (String value) {
-                                              return DropdownMenuItem<String>(
-                                                value: value,
-                                                child: Text(value),
-                                              );
-                                            }).toList(),
+                                        Expanded(
+                                          child: Container(
+                                            alignment:
+                                                AlignmentDirectional.center,
+                                            margin: EdgeInsets.only(left: 20),
+                                            child: DropdownButton<Color>(
+                                              value: colors.first,
+                                              icon: Icon(Icons
+                                                  .keyboard_arrow_down_outlined),
+                                              iconEnabledColor: Color.fromARGB(
+                                                  255, 13, 216, 223),
+                                              onChanged: (Color? value) {
+                                                setState(() {
+                                                  dropdownValue4 = value!;
+                                                });
+                                              },
+                                              items: colors
+                                                  .map<DropdownMenuItem<Color>>(
+                                                      (value) {
+                                                return DropdownMenuItem<Color>(
+                                                    value: value,
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              50),
+                                                      child: Container(
+                                                        //height: 50,
+                                                        color: value,
+                                                      ),
+                                                    ));
+                                              }).toList(),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      Expanded(
-                                        child: Container(
-                                          alignment:
-                                              AlignmentDirectional.center,
-                                          margin: EdgeInsets.only(left: 20),
-                                          child: DropdownButton<String>(
-                                            value: dropdownValue3,
-                                            style: const TextStyle(
-                                                color: Colors.deepPurple),
-                                            onChanged: (String? value) {
-                                              setState(() {
-                                                dropdownValue3 = value!;
-                                              });
-                                            },
-                                            items: list3
-                                                .map<DropdownMenuItem<String>>(
+                                        Expanded(
+                                          child: DropdownButtonHideUnderline(
+                                            child: Container(
+                                              alignment:
+                                                  AlignmentDirectional.center,
+                                              margin: EdgeInsets.only(left: 20),
+                                              child: DropdownButton<String>(
+                                                value: dropdownValue3,
+                                                icon: Icon(Icons
+                                                    .keyboard_arrow_down_outlined),
+                                                iconEnabledColor:
+                                                    Color.fromARGB(
+                                                        255, 13, 216, 223),
+                                                style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                                onChanged: (String? value) {
+                                                  setState(() {
+                                                    dropdownValue3 = value!;
+                                                  });
+                                                },
+                                                items: list3.map<
+                                                        DropdownMenuItem<
+                                                            String>>(
                                                     (String value) {
-                                              return DropdownMenuItem<String>(
-                                                value: value,
-                                                child: Text(value),
-                                              );
-                                            }).toList(),
+                                                  return DropdownMenuItem<
+                                                      String>(
+                                                    value: value,
+                                                    child: Text(
+                                                      value,
+                                                      style: TextStyle(
+                                                          fontSize: 23),
+                                                    ),
+                                                  );
+                                                }).toList(),
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ]),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
@@ -475,6 +527,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                             Navigator.of(context).pop(3);
                           },
                           child: Container(
+                              padding: EdgeInsets.all(8),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
                                 color: Color.fromARGB(255, 13, 216, 223),
