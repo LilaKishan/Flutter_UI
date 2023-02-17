@@ -439,36 +439,42 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                           ),
                                         ),
                                         Expanded(
-                                          child: Container(
-                                            alignment:
-                                                AlignmentDirectional.center,
-                                            margin: EdgeInsets.only(left: 20),
-                                            child: DropdownButton<Color>(
-                                              value: colors.first,
-                                              icon: Icon(Icons
-                                                  .keyboard_arrow_down_outlined),
-                                              iconEnabledColor: Color.fromARGB(
-                                                  255, 13, 216, 223),
-                                              onChanged: (Color? value) {
-                                                setState(() {
-                                                  dropdownValue4 = value!;
-                                                });
-                                              },
-                                              items: colors
-                                                  .map<DropdownMenuItem<Color>>(
-                                                      (value) {
-                                                return DropdownMenuItem<Color>(
-                                                    value: value,
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              50),
+                                          child: DropdownButtonHideUnderline(
+                                            child: Container(
+                                              alignment:
+                                                  AlignmentDirectional.center,
+                                              margin: EdgeInsets.only(left: 20),
+                                              child: DropdownButton<Color>(
+                                                value: dropdownValue4,
+                                                icon: Icon(Icons
+                                                    .keyboard_arrow_down_outlined),
+                                                iconEnabledColor:
+                                                    Color.fromARGB(
+                                                        255, 13, 216, 223),
+                                                onChanged: (Color? value) {
+                                                  setState(() {
+                                                    dropdownValue4 =
+                                                        value! as Color;
+                                                  });
+                                                },
+                                                items: colors.map<
+                                                    DropdownMenuItem<
+                                                        Color>>((value) {
+                                                  return DropdownMenuItem<
+                                                          Color>(
+                                                      value: value,
                                                       child: Container(
-                                                        //height: 50,
-                                                        color: value,
-                                                      ),
-                                                    ));
-                                              }).toList(),
+                                                        width: 25,
+                                                        height: 25,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                          color: value,
+                                                        ),
+                                                      ));
+                                                }).toList(),
+                                              ),
                                             ),
                                           ),
                                         ),
