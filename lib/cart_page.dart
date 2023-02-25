@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import 'package:shoping/constdata.dart';
-import 'package:swipe/swipe.dart';
 
 List<String> list1 = <String>['43', '44', '45', '46'];
 
@@ -113,56 +112,50 @@ class _CartPageState extends State<CartPage> {
               // color: Colors.red,
               child: Column(
                 children: [
-                  Swipe(
-                    onSwipeRight: () {
-                      Container();
-                    },
-                    child: Card(
-                        color: Color.fromARGB(255, 237, 248, 252),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Container(
-                          margin: EdgeInsets.all(10),
-                          child: Row(children: [
-                            Expanded(
-                              child: Container(
-                                //color: Colors.amber,
-                                // height: 20,
-                                child: Text(
-                                  '${itemCount}  Items',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      color: Colors.grey, fontSize: 20),
-                                ),
+                  Card(
+                      color: Color.fromARGB(255, 237, 248, 252),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Container(
+                        margin: EdgeInsets.all(10),
+                        child: Row(children: [
+                          Expanded(
+                            child: Container(
+                              //color: Colors.amber,
+                              // height: 20,
+                              child: Text(
+                                '${itemCount}  Items',
+                                textAlign: TextAlign.left,
+                                style:
+                                    TextStyle(color: Colors.grey, fontSize: 20),
                               ),
                             ),
-                            Expanded(
-                              child: Container(
-                                margin: EdgeInsets.all(3),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      '\$',
-                                      style: TextStyle(
+                          ),
+                          Expanded(
+                            child: Container(
+                              margin: EdgeInsets.all(3),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    '\$',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: Color.fromARGB(255, 13, 216, 223),
+                                    ),
+                                  ),
+                                  Text(
+                                    '180',
+                                    style: TextStyle(
                                         fontSize: 20,
-                                        color:
-                                            Color.fromARGB(255, 13, 216, 223),
-                                      ),
-                                    ),
-                                    Text(
-                                      '180',
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
                               ),
                             ),
-                          ]),
-                        )),
-                  ),
+                          ),
+                        ]),
+                      )),
                   Container(
                     padding: EdgeInsets.all(8),
                     margin: EdgeInsets.fromLTRB(0, 10, 0, 10),

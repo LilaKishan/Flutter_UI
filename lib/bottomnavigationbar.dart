@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shoping/add_user.dart';
 import 'package:shoping/cart_page.dart';
 import 'package:shoping/first_page.dart';
+import 'package:shoping/new_product_page.dart';
 
 class BottomNavigationBarPage extends StatefulWidget {
   const BottomNavigationBarPage({super.key});
@@ -25,10 +27,7 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
         Icons.message,
         size: 150,
       ),
-      Icon(
-        Icons.heart_broken,
-        size: 150,
-      ),
+      NewProductPage(),
       CartPage(),
       Icon(
         Icons.person,
@@ -70,7 +69,7 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_border),
+              icon: Icon(Icons.post_add_sharp),
               label: '',
             ),
             BottomNavigationBarItem(
